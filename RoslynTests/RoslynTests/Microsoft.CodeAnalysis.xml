@@ -1,0 +1,23 @@
+﻿<linker>
+	<assembly fullname="Microsoft.CodeAnalysis">
+		<type fullname="*" />
+	</assembly>
+	<assembly fullname="Microsoft.CodeAnalysis.CSharp">
+		<type fullname="*" />
+	</assembly>
+	<assembly fullname="Microsoft.CodeAnalysis.Workspaces">
+		<type fullname="*" />
+	</assembly>
+	<assembly fullname="System.ComponentModel.Composition">
+		<type fullname="*" />
+	</assembly>
+	<assembly fullname="System.Composition.Hosting">
+		<type fullname="*" />
+	</assembly>
+	<assembly fullname="System.Composition.Runtime">
+		<type fullname="*" />
+	</assembly>
+	<assembly fullname="System.Composition.AttributedModel">
+		<type fullname="*" />
+	</assembly>
+</linker>
