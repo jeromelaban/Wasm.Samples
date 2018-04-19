@@ -5,6 +5,9 @@
 	<assembly fullname="Microsoft.CodeAnalysis.CSharp">
 		<type fullname="*" />
 	</assembly>
+	<assembly fullname="Microsoft.CodeAnalysis.CSharp.Workspaces">
+		<type fullname="*" />
+	</assembly>
 	<assembly fullname="Microsoft.CodeAnalysis.Workspaces">
 		<type fullname="*" />
 	</assembly>
@@ -18,6 +21,27 @@
 		<type fullname="*" />
 	</assembly>
 	<assembly fullname="System.Composition.AttributedModel">
+		<type fullname="*" />
+	</assembly>
+	<assembly fullname="System.Composition.TypedParts">
+		<type fullname="*" />
+	</assembly>
+	<assembly fullname="mscorlib">
+		<type fullname="*" />
+	</assembly>
+	<assembly fullname="System">
+		<type fullname="*" />
+	</assembly>
+	<assembly fullname="System.Runtime">
+		<type fullname="*" />
+	</assembly>
+	<assembly fullname="System.Runtime.Extensions">
+		<type fullname="*" />
+	</assembly>
+	<assembly fullname="System.Collections">
+		<type fullname="*" />
+	</assembly>
+	<assembly fullname="System.Core">
 		<type fullname="*" />
 	</assembly>
 </linker>

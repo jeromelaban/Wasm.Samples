@@ -5,9 +5,17 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+		<LinkerDescriptor Include="Microsoft.CodeAnalysis.xml" />
+  </ItemGroup>
+
   <ItemGroup>
 		<PackageReference Include="Microsoft.CodeAnalysis" Version="2.7.0" />
 		<PackageReference Include="Uno.Wasm.Bootstrap" Version="1.0.0-dev.1" />
-  </ItemGroup>
+	</ItemGroup>
 
 </Project>
