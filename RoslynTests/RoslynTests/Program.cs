@@ -34,17 +34,8 @@ namespace RoslynTests
 				Console.WriteLine($"Symbol:{ compilation.GetTypeByMetadataName("System.Console")}");
 
 				// GetDiagnostics seems to keep running in a CPU Bound loop
-				// Console.WriteLine($"Got compilation DeclarationDiagnostics:{compilation.GetDiagnostics().Length}");
-
-				// GetDeclarationDiagnostics fails with the following error:
-				//
-				// Failed to load project: System.OutOfMemoryException: Out of memory
-				// mono.js:1   at System.Collections.Immutable.ImmutableArray.CreateRange[TSource, TResult](System.Collections.Immutable.ImmutableArray`1[T] items, System.Func`2[T, TResult] selector) < 0x3ff40b8 + 0x00042 > in < e8fa49cb4bda44449727c67d098f8723 >:0
-				// mono.js:1   at Microsoft.CodeAnalysis.ImmutableArrayExtensions.SelectAsArray[TItem, TResult](System.Collections.Immutable.ImmutableArray`1[T] items, System.Func`2[T, TResult] map) < 0x3ff3e68 + 0x00018 > in < 14c57b2ce18d4fa4ae73754053c8ab8b >:0
-				// mono.js:1   at Microsoft.CodeAnalysis.CSharp.Symbols.CSharpCustomModifier.Convert(System.Collections.Immutable.ImmutableArray`1[T] customModifiers) < 0x3ff3cf8 + 0x00034 > in < ccc9a15bbeb940fd83da7e96bb05fdc4 >:0
-				// mono.js:1   at Microsoft.CodeAnalysis.CSharp.Symbols.Metadata.PE.PEParameterSymbol + PEParameterSymbolWithCustomModifiers..ctor(Microsoft.CodeAnalysis.CSharp.Symbols.Metadata.PE.PEModuleSymbol moduleSymbol, Microsoft.CodeAnalysis.CSharp.Symbol containingSymbol, System.Int32 ordinal, System.Boolean isByRef, System.Collections.Immutable.ImmutableArray`1[T] refCustomModifiers, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol type, System.Reflection.Metadata.ParameterHandle handle, System.Collections.Immutable.ImmutableArray`1[T] customModifiers, System.Boolean & isBad) < 0x3ff37f0 + 0x000da > in < ccc9a15bbeb940fd83da7e96bb05fdc4 >:0
-				//
-				Console.WriteLine($"Got compilation DeclarationDiagnostics:{compilation.GetDeclarationDiagnostics().Length}");
+				Console.WriteLine($"Got compilation Diagnostics: {compilation.GetDiagnostics().Length}");
+				Console.WriteLine($"Got compilation DeclarationDiagnostics: {compilation.GetDeclarationDiagnostics().Length}");
 
 				Console.WriteLine($"Emitting assembly...");
 				var stream = new MemoryStream();
@@ -100,7 +91,10 @@ namespace RoslynTests
 				var options = new CSharpCompilationOptions(
 					OutputKind.DynamicallyLinkedLibrary,
 					optimizationLevel: OptimizationLevel.Release,
-					allowUnsafe: true);
+					allowUnsafe: true)
+					// Disabling concurrent builds allows for the emit to finish.
+					.WithConcurrentBuild(false)
+					;
 
 				Console.WriteLine($"References: {string.Join(", ", _references.Select(r => r.Display))}");
 
