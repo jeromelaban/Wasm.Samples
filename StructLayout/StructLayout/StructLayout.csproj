@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="WasmScripts\JavaScript1.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="WasmScripts\JavaScript1.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.0.0-dev.117" />
+  </ItemGroup>
+
+</Project>
