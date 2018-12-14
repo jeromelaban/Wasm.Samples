@@ -20,5 +20,8 @@
   <ItemGroup>
     <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.0.0-dev.127" />
   </ItemGroup>
-
+  
+  <ItemGroup>
+    <LinkerDescriptor Include="LinkerConfig.xml" />
+  </ItemGroup>
 </Project>
