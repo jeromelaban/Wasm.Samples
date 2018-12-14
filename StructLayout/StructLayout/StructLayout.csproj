@@ -1,10 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ApplicationIcon />
     <OutputType>Exe</OutputType>
     <StartupObject />
+    
+    <WasmShellEnableAOT Condition="$([MSBuild]::IsOsUnixLike())">true</WasmShellEnableAOT>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.0.0-dev.117" />
+    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.0.0-dev.127" />
   </ItemGroup>
 
 </Project>
