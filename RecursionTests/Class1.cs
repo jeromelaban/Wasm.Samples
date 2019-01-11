@@ -9,10 +9,10 @@ namespace WasmTimerTests
         {
             // Using Safari for iOS 12.1.2, with the interpreter
             // 
-            // SmallStackFailure(1000); // This one fails around 116 levels deep
-            // SmallStackFailure(5000); // This one fails around 790 levels deep
-            // SmallStackFailureDelegates(1000); // this one fails at 57 levels deep
-            SmallStackFailureDelegates(2000); // this one fails at 390 levels deep
+            // SmallStackFailure(1000);             // 01f6a02: 116 levels deep -> 7952489bd2c: 129 levels deep
+            // SmallStackFailure(5000);             // 01f6a02: 790 levels deep ->  7952489bd2c: 918 levels deep
+            // SmallStackFailureDelegates(1000);    // 01f6a02: 57 levels deep -> 7952489bd2c: 64 levels deep
+            SmallStackFailureDelegates(2000);       // 01f6a02: 390 levels deep ->  7952489bd2c: 460 levels deep
         }
 
         private static void SmallStackFailureDelegates(int delay)
