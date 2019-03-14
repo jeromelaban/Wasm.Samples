@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <StartupObject />
+    <WasmShellMonoRuntimeExecutionMode>InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <MonoRuntimeMixedModeExcludedAssembly Include="MixedModeTests" />
+    <MonoRuntimeMixedModeExcludedAssembly Include="System.Xml" />
+    <MonoRuntimeMixedModeExcludedAssembly Include="System.Core" />
+    <MonoRuntimeMixedModeExcludedAssembly Include="System" />
+    <MonoRuntimeMixedModeExcludedAssembly Include="System.Runtime.Serialization" />
+    <MonoRuntimeMixedModeExcludedAssembly Include="XamlControlsGallery.Wasm" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.0.0-dev.217" />
+    <PackageReference Include="Uno.Core" Version="1.27.0-dev.68" />
+    <Reference Include="Uno.Foundation.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyLibrary\MyLibrary.csproj" />
+  </ItemGroup>
+
+</Project>
