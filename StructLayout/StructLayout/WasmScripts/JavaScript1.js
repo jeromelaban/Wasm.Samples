@@ -1,10 +1,30 @@
-﻿window.DotNet = {
+﻿var methodMap = [];
+
+window.DotNet = {
     jsCallDispatcher: {
         findJSFunction: function (identifier) {
-            return window[identifier];
+            if (identifier) {
+                var parts = identifier.split(':');
+
+                if (parts.length === 1) {
+                    return window[identifier];
+                }
+                else {
+                    var id = methodMap.length;
+                    methodMap[id] = window[parts[1]];
+                    return function () { return size; };
+                }
+            }
+            else {
+                return dispatch;
+            }
         }
     }
 };
+
+function dispatch(id, params) {
+    return methodMap[id](params);
+}
 
 function showResult(message) {
     var para = document.createElement("h1");

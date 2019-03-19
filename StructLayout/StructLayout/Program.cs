@@ -8,37 +8,105 @@ namespace StructLayout
 	public class Program
 	{
 		static int Main(string[] args)
-		{
-			InvokeFast(0);
-			InvokeSlow(0);
+        {
+            InvokeFast(0);
+            InvokeSlow(0);
 
-			WebAssembly.Runtime.InvokeJS($"showResult(\"Starting...\")");
+            WebAssembly.Runtime.InvokeJS($"showResult(\"Starting... 2\")");
 
-			var sw1 = Stopwatch.StartNew();
+            var sw1 = FastLoop();
 
-			for (int i = 0; i < 10000; i++)
-			{
-				InvokeFast(i);
-			}
+            var sw2 = SlowLoop();
 
-			sw1.Stop();
+            var sw3 = FastLoopById();
 
-			var sw2 = Stopwatch.StartNew();
+            var message = 
+                $"JSInvoke: {sw2.Elapsed} " +
+                $"EM_JS: {sw1.Elapsed} " +
+                $"EM_JS_ID: {sw3.Elapsed}";
+            WebAssembly.Runtime.InvokeJS($"showResult(\"{message}\")");
 
-			for (int i = 0; i < 10000; i++)
-			{
-				InvokeSlow(i);
-			}
+            return 0;
+        }
 
-			sw2.Stop();
+        private static Stopwatch FastLoopById()
+        {
+            var sw3 = Stopwatch.StartNew();
 
-			var message = $"JSInvoke: {sw2.Elapsed} EM_JS: {sw1.Elapsed}";
-			WebAssembly.Runtime.InvokeJS($"showResult(\"{message}\")");
+            var testLayoutFastId = InternalCalls.InvokeJSUnmarshalled<object, object, object, IntPtr>(out var exception, $"register:testLayoutFast", null, null, null);
 
-			return 0;
-		}
+            for (int i = 0; i < 10000; i++)
+            {
+                InvokeFastById(i, testLayoutFastId);
+            }
 
-		private static void InvokeSlow(int value)
+            sw3.Stop();
+            return sw3;
+        }
+
+        private static Stopwatch SlowLoop()
+        {
+            var sw2 = Stopwatch.StartNew();
+
+            for (int i = 0; i < 10000; i++)
+            {
+                InvokeSlow(i);
+            }
+
+            sw2.Stop();
+            return sw2;
+        }
+
+        private static Stopwatch FastLoop()
+        {
+            var sw1 = Stopwatch.StartNew();
+
+            for (int i = 0; i < 10000; i++)
+            {
+                InvokeFast(i);
+            }
+
+            sw1.Stop();
+            return sw1;
+        }
+
+        private static void InvokeFastById(int value, IntPtr testLayoutFastId)
+        {
+            var parms = new WindowManagerCreateContentParams
+            {
+                HtmlId = (IntPtr)value,
+                TagName = value.ToString(),
+                Handle = (IntPtr)44,
+                Type = "MyType",
+                IsSvg = true,
+                IsFrameworkElement = false,
+                IsFocusable = true,
+                ClassesCount = 2,
+                Classes = new[] { "class1", "class2" },
+            };
+
+            var pParms = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(WindowManagerCreateContentParams)));
+
+            try
+            {
+                Marshal.StructureToPtr(parms, pParms, false);
+
+                var ret = InternalCalls.InvokeJSUnmarshalled<IntPtr, IntPtr, object, IntPtr>(out var exception, null, testLayoutFastId, pParms, null);
+
+                if (ret != parms.HtmlId)
+                {
+                    throw new Exception($"Invalid fast response [{ret}]");
+                }
+            }
+            finally
+            {
+                Marshal.DestroyStructure(pParms, typeof(WindowManagerCreateContentParams));
+                // Free the unmanaged memory.
+                Marshal.FreeHGlobal(pParms);
+            }
+        }
+
+        private static void InvokeSlow(int value)
 		{
 			int HtmlId = value;
 			string HtmlTag = value.ToString();
