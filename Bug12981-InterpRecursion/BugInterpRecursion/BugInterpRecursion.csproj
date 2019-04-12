@@ -8,10 +8,30 @@
     <MonoRuntimeDebuggerEnabled>true</MonoRuntimeDebuggerEnabled>
     <DebugType>portable</DebugType>
     <DebugSymbols>True</DebugSymbols>
+    <WasmShellILLinkerEnabled>false</WasmShellILLinkerEnabled>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <WasmShellMonoEnvironment Include="MONO_GC_PARAMS" Value="soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep" />
+    <WasmShellMonoEnvironment Include="MONO_LOG_LEVEL" Value="debug" />
+    <WasmShellMonoEnvironment Include="MONO_LOG_MASK" Value="all" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Remove="canvaskit.wasm" />
+  </ItemGroup>
     
   <ItemGroup>
-    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.0.0-dev.217" />
+    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.0.0-dev.244" />
     <DotNetCliToolReference Include="Uno.Wasm.Bootstrap.Cli" Version="1.0.0-dev.217" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <Content Include="canvaskit.wasm" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <None Include="bin\Debug\netstandard2.0\dist\mono.js" />
+    <None Include="bin\Debug\netstandard2.0\dist\mono.wasm" />
   </ItemGroup>
 </Project>
