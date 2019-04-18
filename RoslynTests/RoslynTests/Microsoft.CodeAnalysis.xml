@@ -1,47 +1,13 @@
 ﻿<linker>
-	<assembly fullname="Microsoft.CodeAnalysis">
-		<type fullname="*" />
-	</assembly>
-	<assembly fullname="Microsoft.CodeAnalysis.CSharp">
-		<type fullname="*" />
-	</assembly>
-	<assembly fullname="Microsoft.CodeAnalysis.CSharp.Workspaces">
-		<type fullname="*" />
-	</assembly>
-	<assembly fullname="Microsoft.CodeAnalysis.Workspaces">
-		<type fullname="*" />
-	</assembly>
-	<assembly fullname="System.ComponentModel.Composition">
-		<type fullname="*" />
-	</assembly>
-	<assembly fullname="System.Composition.Hosting">
-		<type fullname="*" />
-	</assembly>
-	<assembly fullname="System.Composition.Runtime">
-		<type fullname="*" />
-	</assembly>
-	<assembly fullname="System.Composition.AttributedModel">
-		<type fullname="*" />
-	</assembly>
-	<assembly fullname="System.Composition.TypedParts">
-		<type fullname="*" />
-	</assembly>
-	<assembly fullname="mscorlib">
-		<type fullname="*" />
-	</assembly>
-	<assembly fullname="System">
-		<type fullname="*" />
-	</assembly>
-	<assembly fullname="System.Runtime">
-		<type fullname="*" />
-	</assembly>
-	<assembly fullname="System.Runtime.Extensions">
-		<type fullname="*" />
-	</assembly>
-	<assembly fullname="System.Collections">
-		<type fullname="*" />
-	</assembly>
-	<assembly fullname="System.Core">
-		<type fullname="*" />
-	</assembly>
+  <!-- Roslyn -->
+  <assembly fullname="Microsoft.CodeAnalysis"/>
+  <assembly fullname="Microsoft.CodeAnalysis.CSharp"/>
+  <assembly fullname="Microsoft.CodeAnalysis.Workspaces"/>
+  <assembly fullname="System.ComponentModel.Composition"/>
+  <assembly fullname="System.Composition.Hosting"/>
+  <assembly fullname="System.Composition.Runtime"/>
+  <assembly fullname="System.Composition.AttributedModel"/>
+  <assembly fullname="System.Composition.TypedParts"/>
+  <assembly fullname="mscorlib"/>
+
 </linker>

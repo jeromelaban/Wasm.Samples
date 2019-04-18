@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -11,11 +11,13 @@
 
   <ItemGroup>
 		<LinkerDescriptor Include="Microsoft.CodeAnalysis.xml" />
+    <EmbeddedResource Include="mono-sdk\*.dll" />
   </ItemGroup>
 
   <ItemGroup>
 		<PackageReference Include="Microsoft.CodeAnalysis" Version="2.8.2" />
-		<PackageReference Include="Uno.Wasm.Bootstrap" Version="1.0.0-dev.40" />
-	</ItemGroup>
+    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.0.0-dev.260" />
+    <DotNetCliToolReference Include="Uno.Wasm.Bootstrap.Cli" Version="1.0.0-dev.260" />
+  </ItemGroup>
 
 </Project>

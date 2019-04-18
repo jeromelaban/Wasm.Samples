@@ -23,13 +23,13 @@ namespace RoslynTests
 
 			try
 			{
-				var sourceLanguage = new CSharpLanguage();
+				var sourceLanguage = CSharpLanguage.Instance;
 
 				Compilation compilation = sourceLanguage
 				  .CreateLibraryCompilation(assemblyName: "InMemoryAssembly", enableOptimisations: false)
 				  .AddSyntaxTrees(new[] { sf.SyntaxTree });
 
-				Console.WriteLine($"Got compilation {File.ReadAllBytes(CorlibReference.Display)?.Length}");
+				Console.WriteLine($"Got compilation");
 
 				Console.WriteLine($"Symbol:{ compilation.GetTypeByMetadataName("System.Console")}");
 
@@ -76,45 +76,39 @@ namespace RoslynTests
 			}
 		}
 
-		public class CSharpLanguage : ILanguageService
-		{
-			private readonly IReadOnlyCollection<MetadataReference> _references = new[] {
-				CorlibReference,
-				SystemCoreReference,
-				ConsoleReference,
-				DecimalReference,
-			};
+        public class CSharpLanguage : ILanguageService
+        {
+            private readonly IEnumerable<MetadataReference> _references;
 
+            public static CSharpLanguage Instance { get; } = new CSharpLanguage();
 
-		public Compilation CreateLibraryCompilation(string assemblyName, bool enableOptimisations)
-			{
-				var options = new CSharpCompilationOptions(
-					OutputKind.DynamicallyLinkedLibrary,
-					optimizationLevel: OptimizationLevel.Release,
-					allowUnsafe: true)
-					// Disabling concurrent builds allows for the emit to finish.
-					.WithConcurrentBuild(false)
-					;
+            private CSharpLanguage()
+            {
+                var sdkFiles = this.GetType().Assembly.GetManifestResourceNames().Where(f => f.Contains("mono_sdk"));
 
-				Console.WriteLine($"References: {string.Join(", ", _references.Select(r => r.Display))}");
+                _references = sdkFiles
+                    .Select(f =>
+                    {
+                        using (var s = this.GetType().Assembly.GetManifestResourceStream(f))
+                        {
+                            return MetadataReference.CreateFromStream(s);
+                        }
+                    })
+                    .ToArray();
+            }
 
-				return CSharpCompilation.Create(assemblyName, options: options, references: _references);
-			}
-		}
+            public Compilation CreateLibraryCompilation(string assemblyName, bool enableOptimisations)
+            {
+                var options = new CSharpCompilationOptions(
+                    OutputKind.DynamicallyLinkedLibrary,
+                    optimizationLevel: OptimizationLevel.Release,
+                    allowUnsafe: true)
+                    // Disabling concurrent builds allows for the emit to finish.
+                    .WithConcurrentBuild(false)
+                    ;
 
-		private static readonly MetadataReference CorlibReference =
-			MetadataReference.CreateFromFile(typeof(object).Assembly.Location);
-
-		private static readonly MetadataReference ConsoleReference =
-			MetadataReference.CreateFromFile(typeof(System.Console).Assembly.Location);
-
-		private static readonly MetadataReference DecimalReference =
-			MetadataReference.CreateFromFile(typeof(System.Decimal).Assembly.Location);
-
-		private static readonly MetadataReference SystemCoreReference =
-			MetadataReference.CreateFromFile(typeof(Enumerable).Assembly.Location);
-
-		private static readonly MetadataReference CodeAnalysisReference =
-			MetadataReference.CreateFromFile(typeof(Compilation).Assembly.Location);
+                return CSharpCompilation.Create(assemblyName, options: options, references: _references);
+            }
+        }
 	}
 }
