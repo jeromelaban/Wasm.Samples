@@ -9,7 +9,12 @@
     <DebugType>portable</DebugType>
     <DebugSymbols>True</DebugSymbols>
     <WasmShellILLinkerEnabled>false</WasmShellILLinkerEnabled>
+    <MonoWasmSDKUri>C:\Users\jerome.laban\Downloads\mono-wasm-b86d6d30e49.zip</MonoWasmSDKUri>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="side.wasm" />
+  </ItemGroup>
   
   <ItemGroup>
     <WasmShellMonoEnvironment Include="MONO_GC_PARAMS" Value="soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep" />
@@ -18,7 +23,8 @@
   </ItemGroup>
   
   <ItemGroup>
-    <None Remove="canvaskit.wasm" />
+    <EmbeddedResource Include="canvaskit.wasm" />
+    <EmbeddedResource Include="side.wasm" />
   </ItemGroup>
     
   <ItemGroup>
@@ -28,6 +34,7 @@
     
   <ItemGroup>
     <Content Include="canvaskit.wasm" />
+    <Content Include="side.wasm" />
   </ItemGroup>
     
   <ItemGroup>
