@@ -1,0 +1,6 @@
+<linker>
+  <assembly fullname="HttpClientRepro" />
+  <assembly fullname="mscorlib">
+    <type fullname="System.Delegate" />
+  </assembly>
+</linker>
