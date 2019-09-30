@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <StartupObject />
+    <MonoRuntimeDebuggerEnabled>true</MonoRuntimeDebuggerEnabled>
+    <DebugType>portable</DebugType>
+    <DebugSymbols>True</DebugSymbols>
+    <WasmShellILLinkerEnabled>false</WasmShellILLinkerEnabled>
+    <WasmShellMonoRuntimeExecutionMode Condition="$([MSBuild]::IsOsUnixLike())">FullAOT</WasmShellMonoRuntimeExecutionMode>
+  </PropertyGroup>
+    
+  <ItemGroup>
+    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.1.0-dev.321" />
+    <DotNetCliToolReference Include="Uno.Wasm.Bootstrap.Cli" Version="1.1.0-dev.321" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <ProjectReference Include="..\OtherLibrary\OtherLibrary.csproj" />
+  </ItemGroup>
+</Project>
