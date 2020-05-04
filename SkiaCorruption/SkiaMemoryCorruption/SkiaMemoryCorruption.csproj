@@ -6,8 +6,10 @@
 		<MonoRuntimeDebuggerEnabled Condition="'$(Configuration)'=='Debug'">true</MonoRuntimeDebuggerEnabled>
 		<WasmShellForceUseWSL>true</WasmShellForceUseWSL>
 
-		<MonoWasmSDKUri>C:\Users\jerome.laban\Downloads\mono-wasm-8ced549d062.zip</MonoWasmSDKUri>
-		<MonoWasmAOTSDKUri>C:\Users\jerome.laban\Downloads\wasm-release-Linux-8ced549d0625697d4a1c4d42eb1c8515553fbf7c.zip</MonoWasmAOTSDKUri>
+		<!-- mono was built using https://github.com/mono/mono/commit/8ced549d0625697d4a1c4d42eb1c8515553fbf7c -->
+		<MonoWasmSDKUri>https://unowasmbootstrap.blob.core.windows.net/runtime/mono-wasm-8ced549d062.zip</MonoWasmSDKUri>
+		<MonoWasmAOTSDKUri>https://unowasmbootstrap.blob.core.windows.net/runtime/wasm-release-Linux-8ced549d0625697d4a1c4d42eb1c8515553fbf7c.zip</MonoWasmAOTSDKUri>
+		
 		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
 		<WasmShellMonoRuntimeExecutionMode>Interpreter</WasmShellMonoRuntimeExecutionMode>
 		<Deterministic>true</Deterministic>
