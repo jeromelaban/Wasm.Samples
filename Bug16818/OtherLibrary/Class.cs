@@ -7,8 +7,19 @@ namespace Bug16818
 {
     public class LoggerFactory
     {
-        private IDisposable[] _providers = (IDisposable[])new IDisposable[0];
+        private IDisposable[] _providers;
 
-        private readonly object _sync = new object();
+        private readonly object _sync;
+
+        public LoggerFactory()
+        {
+            _sync = new object();
+        }
+
+        public static void Test()
+        {
+            // var r = Array.Empty<IDisposable>();
+            var r = new int[0];
+        }
     }
 }

@@ -10,8 +10,12 @@ namespace WasmTimerTests
         static void Main(string[] args)
         {
             Console.WriteLine("s1");
-            var logger = new LoggerFactory();
+            var r = new IDisposable[1];
             Console.WriteLine("s2");
-        }
+            LoggerFactory.Test();
+            Console.WriteLine("s3");
+            var logger = new LoggerFactory();
+            Console.WriteLine("s4");
+       }
     }
 }

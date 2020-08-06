@@ -1,0 +1,4 @@
+﻿<linker>
+  <assembly fullname="Bug20195" />
+  <assembly fullname="WebAssembly.Bindings" />
+</linker>
