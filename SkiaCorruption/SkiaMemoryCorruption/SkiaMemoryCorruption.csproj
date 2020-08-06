@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<MonoRuntimeDebuggerEnabled Condition="'$(Configuration)'=='Debug'">true</MonoRuntimeDebuggerEnabled>
+		<WasmShellForceUseWSL>true</WasmShellForceUseWSL>
+
+		<!-- mono was built using https://github.com/mono/mono/commit/8ced549d0625697d4a1c4d42eb1c8515553fbf7c -->
+		<MonoWasmSDKUri>https://unowasmbootstrap.blob.core.windows.net/runtime/mono-wasm-8ced549d062.zip</MonoWasmSDKUri>
+		<MonoWasmAOTSDKUri>https://unowasmbootstrap.blob.core.windows.net/runtime/wasm-release-Linux-8ced549d0625697d4a1c4d42eb1c8515553fbf7c.zip</MonoWasmAOTSDKUri>
+		
+		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
+		<WasmShellMonoRuntimeExecutionMode>Interpreter</WasmShellMonoRuntimeExecutionMode>
+		<Deterministic>true</Deterministic>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Uno.SkiaSharp.Wasm" Version="1.68.0-uno.298" />
+		<PackageReference Include="Uno.Wasm.Bootstrap" Version="1.2.0-dev.29" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="1.2.0-dev.29" PrivateAssets="all" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<!-- This automatically includes any Bitcode file for static linking -->
+		<Content Include="*.bc" />
+	</ItemGroup>
+</Project>
