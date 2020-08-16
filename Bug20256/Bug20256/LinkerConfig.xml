@@ -1,0 +1,5 @@
+﻿<linker>
+	<assembly fullname="Bug20256" />
+	<assembly fullname="OtherLibrary" />
+	<assembly fullname="WebAssembly.Bindings" />
+</linker>
