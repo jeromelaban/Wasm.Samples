@@ -7,6 +7,9 @@ namespace Bug20195Library
 {
 	public class ResourceResolver
 	{
-		
+		public ResourceResolver()
+		{
+
+		}
 	}
 }
