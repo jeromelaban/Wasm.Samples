@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <StartupObject />
+    <WasmShellMonoRuntimeExecutionMode>FullAOT</WasmShellMonoRuntimeExecutionMode>
+  </PropertyGroup>
+    
+  <ItemGroup>
+    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.4.0-dev.32" />
+  </ItemGroup>
+
+</Project>
