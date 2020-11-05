@@ -4,9 +4,13 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<NoWarn>NU1701</NoWarn>
-		<WasmShellMonoRuntimeExecutionMode>InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
+		<WasmShellMonoRuntimeExecutionMode>FullAOT</WasmShellMonoRuntimeExecutionMode>
 		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
 		<!--<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>-->
+		<MonoWasmSDKUri>C:\Users\jerome.laban\Downloads\mono-wasm-ef94c890af8.zip</MonoWasmSDKUri>
+		<MonoWasmAOTSDKUri>C:\Users\jerome.laban\Downloads\wasm-release-Linux-ef94c890af89f1a6a92968ea3e83d283fe3064d9.zip</MonoWasmAOTSDKUri>
+		<LangVersion>preview</LangVersion>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
 		<MonoRuntimeDebuggerEnabled>true</MonoRuntimeDebuggerEnabled>
@@ -14,9 +18,9 @@
 		<DebugType>portable</DebugType>
 		<DebugSymbols>true</DebugSymbols>
 	</PropertyGroup>
-	<ItemGroup>
+	<!--<ItemGroup>
 		<WasmShellEnableAotProfile Include="aot.profile" />
-	</ItemGroup>
+	</ItemGroup>-->
 	<ItemGroup>
 		<Content Include="Assets\SplashScreen.png" />
 	</ItemGroup>
@@ -45,8 +49,8 @@
 		<!-- Note that for WebAssembly version 1.1.1 of the console logger required -->
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
-		<PackageReference Include="Uno.UI.WebAssembly" Version="3.0.5" />
-		<PackageReference Include="Uno.UI.RemoteControl" Version="3.0.5" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.UI.WebAssembly" Version="3.1.0-dev.39" />
+		<PackageReference Include="Uno.UI.RemoteControl" Version="3.1.0-dev.39" Condition="'$(Configuration)'=='Debug'" />
 		<PackageReference Include="Uno.Wasm.Bootstrap" Version="1.4.0-dev.30" />
 		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="1.4.0-dev.30" />
 	</ItemGroup>

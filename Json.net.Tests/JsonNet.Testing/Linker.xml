@@ -1,4 +1,5 @@
 ﻿<linker>
+	<assembly fullname="mscorlib"/>
 	<assembly fullname="System.Core">
 		<!-- This is required by JSon.NET and any expression.Compile caller -->
 		<type fullname="System.Linq.Expressions*" />

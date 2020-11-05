@@ -9,7 +9,9 @@
     <DebugType>portable</DebugType>
     <DebugSymbols>True</DebugSymbols>
     <WasmShellMonoRuntimeExecutionMode>InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
-		<!--<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>-->
+		<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>
+		<MonoWasmSDKUri>C:\Users\jerome.laban\Downloads\mono-wasm-ef94c890af8.zip</MonoWasmSDKUri>
+		<MonoWasmAOTSDKUri>C:\Users\jerome.laban\Downloads\wasm-release-Linux-ef94c890af89f1a6a92968ea3e83d283fe3064d9.zip</MonoWasmAOTSDKUri>
 	</PropertyGroup>
 	<ItemGroup>
 		<WasmShellEnableAotProfile Include="aot.profile" />

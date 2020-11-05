@@ -2,11 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netstandard2.0</TargetFramework>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <LangVersion>7.3</LangVersion>
+    <TargetFramework>net5</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,8 +12,8 @@
 
   <ItemGroup>
 		<PackageReference Include="Microsoft.CodeAnalysis" Version="2.8.2" />
-    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.0.0-dev.260" />
-    <DotNetCliToolReference Include="Uno.Wasm.Bootstrap.Cli" Version="1.0.0-dev.260" />
+    <PackageReference Include="Uno.Wasm.Bootstrap" Version="2.0.0-dev.net5.83" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="2.0.0-dev.net5.83" />
   </ItemGroup>
 
 </Project>
