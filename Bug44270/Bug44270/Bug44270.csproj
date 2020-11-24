@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <StartupObject />
+		<!--<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>-->
+		<WasmShellMonoRuntimeExecutionMode>InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
+		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<LinkerDescriptor Include="Linker.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<WasmShellEnableAotProfile Include="aot.profile" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Uno.Wasm.Bootstrap" Version="2.0.0-dev.97" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="2.0.0-dev.97" />
+	</ItemGroup>
+
+</Project>
