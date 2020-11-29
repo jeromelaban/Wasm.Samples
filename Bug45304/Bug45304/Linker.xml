@@ -1,0 +1,4 @@
+﻿<linker>
+	<assembly fullname="Bug45304"/>
+	<assembly fullname="System.Private.Runtime.InteropServices.JavaScript"/>
+</linker>
