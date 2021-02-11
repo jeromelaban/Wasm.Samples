@@ -5,14 +5,16 @@
     <ApplicationIcon />
     <OutputType>Exe</OutputType>
     <StartupObject />
-		<!--<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>-->
+		<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>
+		<!--<WasmShellMonoRuntimeExecutionMode>FullAOT</WasmShellMonoRuntimeExecutionMode>-->
 		<WasmShellMonoRuntimeExecutionMode>InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
 		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
 		<!--<WasmShellDisableSDKCheckSumValidation>true</WasmShellDisableSDKCheckSumValidation>-->
 		<WasmShellEnableNetCoreICU>false</WasmShellEnableNetCoreICU>
+		<LangVersion>9.0</LangVersion>
 	</PropertyGroup>
 
-	<ItemGroup>
+	<ItemGroup Condition="'$(WasmShellMonoRuntimeExecutionMode)'=='InterpreterAndAOT'">
 		<WasmShellEnableAotProfile Include="aot.profile" />
 	</ItemGroup>
 	
@@ -26,15 +28,9 @@
 		<WasmShellExtraEmccFlags Include="-s TOTAL_MEMORY=393216000" />
 	</ItemGroup>
 	-->
-
+	
 	<ItemGroup>
 		<PackageReference Include="Uno.Wasm.Bootstrap" Version="2.0.0-dev.163" />
 		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="2.0.0-dev.163" />
 	</ItemGroup>
-
-	<!--<ItemGroup>
-		<PackageReference Include="Uno.Wasm.Bootstrap" Version="1.3.0" />
-		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="1.3.0" />
-	</ItemGroup>-->
-
 </Project>
