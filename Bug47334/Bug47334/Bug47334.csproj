@@ -14,9 +14,11 @@
 		<WasmShellAOTProfileExcludedMethods>ManifestBasedResourceGroveler;InternalGetSatelliteAssembly;InternalLoad;Dispose;ExecuteCallbackHandlers;LoadIntoBufferAsync</WasmShellAOTProfileExcludedMethods>
 	</PropertyGroup>
 	
-	<!--<PropertyGroup>
+	<!--
+	<PropertyGroup>
 		<WasmShellAOTProfileExcludedMethods>InternalGetSatelliteAssembly</WasmShellAOTProfileExcludedMethods>
-	</PropertyGroup>-->
+	</PropertyGroup>
+	-->
 
 	<ItemGroup>
 		<WasmShellEnableAotProfile Include="aot.profile" />
@@ -26,14 +28,14 @@
 		<LinkerDescriptor Include="Linker.xml" />
 	</ItemGroup>
 
-	<ItemGroup>
+	<!--<ItemGroup>
 		<WasmShellExtraEmccFlags Include="-fsanitize=address" />
 		<WasmShellExtraEmccFlags Include="-s TOTAL_MEMORY=393216000" />
-	</ItemGroup>
+	</ItemGroup>-->
 
   <ItemGroup>
-		<PackageReference Include="Uno.Wasm.Bootstrap" Version="2.0.0-dev.148" />
-		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="2.0.0-dev.148" />
+		<PackageReference Include="Uno.Wasm.Bootstrap" Version="2.0.0-dev.196" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="2.0.0-dev.196" />
 	</ItemGroup>
 
 	<ItemGroup>
