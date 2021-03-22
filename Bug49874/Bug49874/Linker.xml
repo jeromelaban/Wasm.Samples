@@ -1,0 +1,4 @@
+﻿<linker>
+	<assembly fullname="Bug49874"/>
+	<assembly fullname="ClassLibrar1"/>
+</linker>
