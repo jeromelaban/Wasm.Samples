@@ -1,0 +1,4 @@
+﻿<linker>
+	<assembly fullname="LinkerBug1919"/>
+	<assembly fullname="SQLitePCLRaw.provider.sqlite3" />
+</linker>

@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+
+		<!-- Uncomment this line to change the linker binaries in %temp%\dotnet-runtime-wasm-xx-xx-xx-Release -->
+		<!--<WasmShellDisableSDKCheckSumValidation>true</WasmShellDisableSDKCheckSumValidation>-->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <LinkerDescriptor Include="Linker.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore">
+      <Version>6.0.0-preview.2.21154.2</Version>
+    </PackageReference>
+
+		<PackageReference Include="Microsoft.Data.Sqlite.Core">
+			<Version>6.0.0-preview.2.21154.2</Version>
+		</PackageReference>
+		<PackageReference Include="SQLitePCLRaw.provider.sqlite3" Version="2.0.4" />
+    <PackageReference Include="Uno.Wasm.Bootstrap" Version="2.1.0-dev.21" />
+    <PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="2.1.0-dev.21" />
+  </ItemGroup>
+</Project>
