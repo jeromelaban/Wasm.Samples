@@ -1,0 +1,12 @@
+repro for dotnet/runtime/issues #51406
+
+- Requires linux to build (docker image [unoplatform/wasm-build:5.0](https://hub.docker.com/layers/unoplatform/wasm-build/5.0/images/sha256-6b98af42d930bdc375c42c50162142e04e70d3d7d3c9eb04d5cc64cef3e7d7cf?context=explore) makes it easier)
+- Build once to get a vanilla copy of the runtime:
+  - Go to `Issue52735.Wasm`
+  - Run `dotnet build -c Release`
+  - `dotnet serve -p 8000 -d bin\Release\net5.0\dist`
+- To override the runtime:
+  - Copy `runtime/artifacts/bin/microsoft.netcore.app.runtime.browser-wasm/Release/*.wasm` and `*.js` to `/tmp/dotnet-runtime-wasm-linux-7be3fcf-d77854a16ea-839807436-Release/runtimes/browser-wasm/native` (the folder should already exist because of the previous build)
+  - Run `dotnet build -c Release` again
+
+When no issues, the app should start completely showing `hello world`.
