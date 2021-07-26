@@ -7,14 +7,23 @@
 		<StartupObject />
 		<WasmShellMonoRuntimeExecutionMode>InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
 		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
+		<NetCoreWasmSDKUri>https://unowasmbootstrap.blob.core.windows.net/runtime/dotnet-runtime-wasm-linux-d69fec7-881e90231b9-971517687-Release.zip</NetCoreWasmSDKUri>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="WasmScripts\JavaScript.js" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="WasmScripts\JavaScript.js" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<LinkerDescriptor Include="Linker.xml" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Uno.Wasm.Bootstrap" Version="2.1.0-dev.45" />
-		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="2.1.0-dev.45" />
+		<PackageReference Include="Uno.Wasm.Bootstrap" Version="3.0.0-dev.101" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="3.0.0-dev.101" />
 	</ItemGroup>
 </Project>

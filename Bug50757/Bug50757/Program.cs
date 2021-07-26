@@ -1,91 +1,125 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Uno.Wasm.Sample
 {
-    public static class Program
-    {
-        static void Main(string[] args)
-        {
-            TestRegisterColor();
-            TestRegisterOther();
-        }
+	public static class Program
+	{
+		static void Main(string[] args)
+		{
+			TestForeachListOfT();
+			TestForListOfT();
+			TestForArray();
+		}
 
-private static void TestRegisterColor()
-{
-    var sw = Stopwatch.StartNew();
-    int value = 0;
-    for (int i = 0; i < 10000000; i++)
-    {
-        RegisterColor(null, c => value++);
-    }
-    sw.Stop();
-    Console.WriteLine($"Color: {sw.ElapsedMilliseconds}");
-}
+		private static void TestForArray()
+		{
+			var SUT = new List<object>();
+			SUT.AddRange(Enumerable.Range(1, 1000)
+				.Select(i => (object)null));
+			var SUT2 = SUT.ToArray();
 
-private static void TestRegisterOther()
-{
-    var sw = Stopwatch.StartNew();
-    int value = 0;
-    for (int i = 0; i < 10000000; i++)
-    {
-        RegisterOther(null, c => value++);
-    }
-    sw.Stop();
-    Console.WriteLine($"Other: {sw.ElapsedMilliseconds}");
-}
+			var sw = Stopwatch.StartNew();
 
-private static void RegisterColor(object o, Action<Color> action)
-{
-    action(new Color());
-}
+			for (int i = 0; i < 5000; i++)
+			{
+				int count = 0;
+				foreach (var item in SUT2)
+				{
+					count++;
+				}
+			}
 
-private static void RegisterOther(object o, Action<IDisposable> action)
-{
-    action(null);
-}
-    }
+			sw.Stop();
+			Console.WriteLine($"TestForArray: {sw.Elapsed}");
+		}
 
-public partial struct Color : IFormattable
-{
-    public byte A { get; set; }
 
-    public byte B { get; set; }
+		private static void TestForListOfT()
+		{
+			var SUT = new List<object>();
+			SUT.AddRange(Enumerable.Range(1, 1000)
+				.Select(i => (object)null));
 
-    public byte G { get; set; }
+			var sw = Stopwatch.StartNew();
 
-        public byte R { get; set; }
+			for (int j = 0; j < 5000; j++)
+			{
+				int count = 0;
+				for (int i = 0; i < SUT.Count; i++)
+				{
+					count++;
+				}
+			}
 
-        internal bool IsTransparent => A == 0;
+			sw.Stop();
+			Console.WriteLine($"TestForListOfT: {sw.Elapsed}");
+		}
 
-        public static Color FromArgb(byte a, byte r, byte g, byte b) => new Color(a, r, g, b);
+		private static void TestForeachListOfT()
+		{
+			var SUT = new List<object>();
+			SUT.AddRange(Enumerable.Range(1, 1000)
+				.Select(i => (object)null));
 
-        private Color(byte a, byte r, byte g, byte b)
-        {
-            A = a;
-            R = r;
-            G = g;
-            B = b;
-        }
+			var sw = Stopwatch.StartNew();
 
-        public override bool Equals(object o) => o is Color color && Equals(color);
+			for (int i = 0; i < 5000; i++)
+			{
+				int count = 0;
+				foreach (var item in SUT)
+				{
+					count++;
+				}
+			}
 
-        public bool Equals(Color color) =>
-            color.A == A
-            && color.R == R
-            && color.G == G
-            && color.B == B;
+			sw.Stop();
+			Console.WriteLine($"TestForeachListOfT: {sw.Elapsed}");
+		}
+	}
 
-        public override int GetHashCode() => (A << 8) ^ (R << 6) ^ (G << 4) ^ B;
+	public partial struct Color : IFormattable
+	{
+		public byte A { get; set; }
 
-        public override string ToString() => $"[Color: {A:X8};{R:X8};{G:X8};{B:X8}]";
+		public byte B { get; set; }
 
-        public string ToString(string format, IFormatProvider provider) => ToString();
+		public byte G { get; set; }
 
-        public static bool operator ==(Color color1, Color color2) => color1.Equals(color2);
+		public byte R { get; set; }
 
-        public static bool operator !=(Color color1, Color color2) => !color1.Equals(color2);
+		internal bool IsTransparent => A == 0;
 
-        internal Color WithOpacity(double opacity) => new Color((byte)(A * opacity), R, G, B);
-    }
+		public static Color FromArgb(byte a, byte r, byte g, byte b) => new Color(a, r, g, b);
+
+		private Color(byte a, byte r, byte g, byte b)
+		{
+			A = a;
+			R = r;
+			G = g;
+			B = b;
+		}
+
+		public override bool Equals(object o) => o is Color color && Equals(color);
+
+		public bool Equals(Color color) =>
+			color.A == A
+			&& color.R == R
+			&& color.G == G
+			&& color.B == B;
+
+		public override int GetHashCode() => (A << 8) ^ (R << 6) ^ (G << 4) ^ B;
+
+		public override string ToString() => $"[Color: {A:X8};{R:X8};{G:X8};{B:X8}]";
+
+		public string ToString(string format, IFormatProvider provider) => ToString();
+
+		public static bool operator ==(Color color1, Color color2) => color1.Equals(color2);
+
+		public static bool operator !=(Color color1, Color color2) => !color1.Equals(color2);
+
+		internal Color WithOpacity(double opacity) => new Color((byte)(A * opacity), R, G, B);
+	}
 }

@@ -13,7 +13,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<WasmShellEnableAotProfile Include="aot.profile" />
+		<!--<WasmShellEnableAotProfile Include="aot.profile" />-->
 	</ItemGroup>
 	
 	<ItemGroup>
@@ -28,8 +28,8 @@
 	-->
 
   <ItemGroup>
-		<PackageReference Include="Uno.Wasm.Bootstrap" Version="2.0.0-dev.163" />
-		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="2.0.0-dev.163" />
+		<PackageReference Include="Uno.Wasm.Bootstrap" Version="2.1.0-dev.25" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="2.1.0-dev.25" />
 	</ItemGroup>
 
 </Project>

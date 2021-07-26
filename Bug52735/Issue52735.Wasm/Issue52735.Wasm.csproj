@@ -12,6 +12,7 @@
 		<!-- Prevents re-downloading and overwriting the SDK files -->
 		<WasmShellDisableSDKCheckSumValidation>true</WasmShellDisableSDKCheckSumValidation>
 		<NetCoreWasmSDKUri>https://unowasmbootstrap.blob.core.windows.net/runtime/dotnet-runtime-wasm-linux-7be3fcf-d77854a16ea-839807436-Release.zip</NetCoreWasmSDKUri>
+		<UseSharedCompilation>false</UseSharedCompilation>
 	</PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <MonoRuntimeDebuggerEnabled>true</MonoRuntimeDebuggerEnabled>
@@ -38,6 +39,9 @@
     <PackageReference Include="Uno.UI.WebAssembly" Version="3.7.4" />
     <PackageReference Include="Uno.Wasm.Bootstrap" Version="2.1.0" />
     <PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="2.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
   </ItemGroup>
   <Import Project="..\Issue52735.Shared\Issue52735.Shared.projitems" Label="Shared" Condition="Exists('..\Issue52735.Shared\Issue52735.Shared.projitems')" />
 </Project>
