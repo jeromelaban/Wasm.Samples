@@ -1,0 +1,3 @@
+﻿<linker>
+	<assembly fullname="net7threadbug"/>
+</linker>
