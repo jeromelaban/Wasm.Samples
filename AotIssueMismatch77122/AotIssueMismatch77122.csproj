@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<!--<MonoRuntimeDebuggerEnabled Condition="'$(Configuration)'=='Debug'">true</MonoRuntimeDebuggerEnabled>-->
+		<WasmShellMonoRuntimeExecutionMode>InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
+		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
+		<!--<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>-->
+		<!--<NetCoreWasmSDKUri>https://unowasmbootstrap.azureedge.net/runtime/dotnet-runtime-wasm-linux-2a20ac8-9567f277c65-3254313633-Release.zip</NetCoreWasmSDKUri>-->
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="WasmScripts\JavaScript.js" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="WasmScripts\JavaScript.js" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(WasmShellGenerateAOTProfile)'==''">
+		<WasmShellEnableAotProfile Include="aot.profile" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<WasmShellMonoEnvironment Include="MONO_GC_PARAMS" Value="soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep" />
+		<WasmShellMonoEnvironment Include="MONO_LOG_LEVEL" Value="debug" />
+		<WasmShellMonoEnvironment Include="MONO_LOG_MASK" Value="gc" />
+	</ItemGroup>
+	<ItemGroup>
+		<LinkerDescriptor Include="LinkerConfig.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!--<PackageReference Include="Uno.Wasm.Bootstrap" Version="3.3.1" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="3.3.1" />-->
+		<PackageReference Include="Uno.Wasm.Bootstrap" Version="7.0.0-dev.218" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="7.0.0-dev.218" />
+	</ItemGroup>
+</Project>
