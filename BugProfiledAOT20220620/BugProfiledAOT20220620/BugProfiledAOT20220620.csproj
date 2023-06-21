@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ApplicationIcon />
+		<OutputType>Exe</OutputType>
+		<StartupObject />
+		<WasmShellMonoRuntimeExecutionMode>InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
+		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+		<!--
+		Uncomment this block to generate a profile
+		<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>
+		<WasmShellILLinkerEnabled>false</WasmShellILLinkerEnabled>
+		<UnoXamlResourcesTrimming>false</UnoXamlResourcesTrimming>
+		<WasmShellEnableJiterpreter>false</WasmShellEnableJiterpreter>
+		-->
+	</PropertyGroup>
+
+	<ItemGroup>
+		<LinkerDescriptor Include="Linker.xml" />
+	</ItemGroup>
+	
+	<ItemGroup Condition="'$(WasmShellMonoRuntimeExecutionMode)'=='InterpreterAndAOT'">
+		<WasmShellEnableAotProfile Include="aot.profile" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="Uno.Wasm.Bootstrap" Version="8.0.0-dev.214" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="8.0.0-dev.214" />
+	</ItemGroup>
+</Project>

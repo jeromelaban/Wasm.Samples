@@ -1,0 +1,4 @@
+﻿<linker>
+	<assembly fullname="BugProfiledAOT20220620"/>
+	<assembly fullname="System.Runtime.InteropServices.JavaScript"/>
+</linker>
